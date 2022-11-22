@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="top" style="height:100vh; background: #ccc;"></div>
+
+    <div class="easypeiChart">
+        <div class="container">
+            <div class="box">
+                <div class="chart" data-percent="95"></div>
+                <h2>HTML</h2>
+                <h3 data-rate="95"></h3>
+            </div><!-- box -->
+            <div class="box">
+                <div class="chart" data-percent="90"></div>
+                <h2>CSS</h2>
+                <h3 data-rate="90"></h3>
+            </div><!-- box -->
+            <div class="box">
+                <div class="chart" data-percent="97"></div>
+                <h2>PHOTOSHOP</h2>
+                <h3 data-rate="97"></h3>
+            </div><!-- box -->
+            <div class="box">
+                <div class="chart" data-percent="70"></div>
+                <h2>javaScript</h2>
+                <h3 data-rate="70"></h3>
+            </div><!-- box -->
+
+
+        </div>
+    </div>
+
+    <div class="bottom" style="height:100vh; background: #ccc;"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
+    <script>
+        $(function () {
+
+            var counterData = $('.box h3');
+
+            var executed = false;
+
+
+
+            $(window).scroll(function () {
+                var $scroll = $(this).scrollTop();
+                //스크롤의 탑값을 가져옴 //$(this)는 window를 의미함
+
+
+                var $offset = $('.easypeiChart').offset().top - 400;
+                if ($scroll > $offset) {
+                    PieChart();
+
+                    if (!executed) {
+                        //A.each(function(){}) --> A각각의 할일
+                        counterData.each(function () {
+                            var current = $(this);
+                            var target = current.data('rate');
+                            //data-rate="70" --> 70을 가져온다
+
+
+                            //console.log(target)
+                            $({
+                                rate: 0
+                            }).animate({
+                                rate: target
+                            }, {
+                                duration: 2500,
+                                progress: function () {
+                                    var now = this.rate;
+                                    console.log(now)
+                                    current.text(Math.floor(now) + "%")
+                                }
+                            })
+                        })
+                        executed = true;
+                    }
+                }
+            });
+
+
+
+            function PieChart() {
+                $('.chart').easyPieChart({
+                    barColor: '#17d3e6',
+                    scaleColor: false,
+                    trackColor: "373737",
+                    lineWidth: 8,
+                    lineCap: "butt",
+                    animate: 2000
+                });
+            }
+
+            PieChart();
+
+
+
+        });
+    </script>
+</body>
+
+</html>

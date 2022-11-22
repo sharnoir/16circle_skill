@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+body {
+    background: #19182d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.easypeiChart {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.easypeiChart .container {
+    display: flex;
+    width: 1200px;
+}
+
+.easypeiChart .box {
+    width: 25%;
+    height: 230px;
+    position: relative;
+}
+
+.easypeiChart .box .chart {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.easypeiChart .box .chart canvas {
+    width: 100%;
+}
+
+.easypeiChart .box h2 {
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.easypeiChart .box h3 {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 48px;
+}
